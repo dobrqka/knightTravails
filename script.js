@@ -42,7 +42,7 @@ const knightMoves = (currentPosition, targetPosition) => {
     }
   });
   if (!validCoordinates) {
-    return "Incorrect coordinates";
+    return "Incorrect coordinates.";
   }
 
   let visited = [];
@@ -60,18 +60,14 @@ const knightMoves = (currentPosition, targetPosition) => {
         if (target.toString() == visited[i].toString()) {
           visited = [];
         } else {
-          // check if the target is a direct neighbor to a visited square
+          // check if the target is a direct neighbor to a visited item
           getNeighbors(visited[i][0], visited[i][1]).forEach((neighbor) => {
             if (neighbor.toString() == target.toString()) {
-              target = visited[i]; // we change the target to be the direct neighbor we found in the visited array
-              if (visited[i] == visited[0]) {
-                visited = [];
-              } else {
-                visited.splice(i, visited.length - i); // when we find a direct neighbor we delete the remaining array elements from that point on
-              }
+              target = visited[i]; // set the new target to the direct neighbor we found in the visited array
+              visited.splice(i, visited.length - i); // when we find a direct neighbor we delete the rest of the array
               moves.push(target);
               counter++;
-              i = -1; // we reset i so we can run the loop again for remaining visited elements with the new target
+              i = -1; // reset the loop
             }
           });
         }
@@ -85,8 +81,8 @@ const knightMoves = (currentPosition, targetPosition) => {
     }
   }
 
-  moves.reverse();
   const prettyPrintMoves = () => {
+    moves.reverse();
     let prettyString = ``;
     for (i = 0; i < moves.length; i++) {
       prettyString += `${moves[i]} => `;
@@ -98,4 +94,4 @@ const knightMoves = (currentPosition, targetPosition) => {
   ${prettyPrintMoves()}`;
 };
 
-console.log(knightMoves([7, 7], [0, 0]));
+console.log(knightMoves([0, 0], [7, 7]));
