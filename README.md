@@ -1,0 +1,1 @@
+A function that shows the shortest possible way to get from one square to another on a chess board using the knight by outputting all squares the knight will stop on along the way as well as the number of moves it would take.
