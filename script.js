@@ -42,7 +42,7 @@ const knightMoves = (currentPosition, targetPosition) => {
     }
   });
   if (!validCoordinates) {
-    return "Incorrect coordinates.";
+    return "Incorrect coordinates. Should be values between 1 and 7.";
   }
 
   let visited = [];
@@ -96,11 +96,15 @@ const knightMoves = (currentPosition, targetPosition) => {
 
 const calculateButton = document.querySelector(".button-calculate");
 
-calculateButton.addEventListener("click", () => {
-  const xCoordinates = [document.querySelector("#x-1"), document.querySelector("#x-2")];
-  const yCoordinates = [document.querySelector("#y-1"), document.querySelector("#y-2")]
-  const result = knightMoves(xCoordinates, yCoordinates)
+calculateButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const x1 = parseInt(document.querySelector("#x-1").value);
+  const x2 = parseInt(document.querySelector("#x-2").value);
+  const y1 = parseInt(document.querySelector("#y-1").value);
+  const y2 = parseInt(document.querySelector("#y-2").value);
+
+  const result = knightMoves([x1, x2], [y1, y2]);
   document.querySelector(".result").textContent = `${result}`;
-})
+});
 
 // console.log(knightMoves([0, 0], [7, 7]));
