@@ -94,4 +94,13 @@ const knightMoves = (currentPosition, targetPosition) => {
   ${prettyPrintMoves()}`;
 };
 
-console.log(knightMoves([0, 0], [7, 7]));
+const calculateButton = document.querySelector(".button-calculate");
+
+calculateButton.addEventListener("click", () => {
+  const xCoordinates = [document.querySelector("#x-1"), document.querySelector("#x-2")];
+  const yCoordinates = [document.querySelector("#y-1"), document.querySelector("#y-2")]
+  const result = knightMoves(xCoordinates, yCoordinates)
+  document.querySelector(".result").textContent = `${result}`;
+})
+
+// console.log(knightMoves([0, 0], [7, 7]));
